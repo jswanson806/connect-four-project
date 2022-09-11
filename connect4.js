@@ -107,11 +107,8 @@ function handleClick(evt) {
   // check for tie
   // TODO: check if all cells in board are filled; if so call, call endGame
   //if each cell returns 1 or 2, the boolean returns true, the board is filled, call endGame
-  if (board.every(el => el.every(Boolean))) {
-    return endGame("Tie!");
-  }
+  checkForTie();
  
-  
 
   // switch players
   // TODO: switch currPlayer 1 <-> 2
@@ -120,6 +117,12 @@ function handleClick(evt) {
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
+
+function checkForTie() {
+  if (board.every(el => el.every(Boolean))) {
+    return endGame("Tie!");
+  }
+}
 
 function checkForWin() {
   function _win(cells) {
@@ -139,14 +142,14 @@ function checkForWin() {
 
   // TODO: read and understand this code. Add comments to help you.
   //iterate over each column
-  for (var y = 0; y < HEIGHT; y++) {
+  for (let y = 0; y < HEIGHT; y++) {
     //iterate over each row
-    for (var x = 0; x < WIDTH; x++) {
+    for (let x = 0; x < WIDTH; x++) {
       //check for the same player number in a row in various patterns
-      var horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
-      var vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
-      var diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
-      var diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
+      let horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
+      let vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
+      let diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
+      let diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
 
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
         return true;
