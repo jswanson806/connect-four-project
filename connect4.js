@@ -105,8 +105,7 @@ function handleClick(evt) {
   }
 
   // check for tie
-  // TODO: check if all cells in board are filled; if so call, call endGame
-  //if each cell returns 1 or 2, the boolean returns true, the board is filled, call endGame
+
   checkForTie();
  
 
@@ -116,14 +115,15 @@ function handleClick(evt) {
   currPlayer === 1 ? currPlayer = 2 : currPlayer = 1;
 }
 
-/** checkForWin: check board cell-by-cell for "does a win start here?" */
-
+  // TODO: check if all cells in board are filled; if so call, call endGame
+  //if each cell returns 1 or 2, the boolean returns true, the board is filled, call endGame
 function checkForTie() {
   if (board.every(el => el.every(Boolean))) {
     return endGame("Tie!");
   }
 }
 
+/** checkForWin: check board cell-by-cell for "does a win start here?" */
 function checkForWin() {
   function _win(cells) {
     // Check four cells to see if they're all color of current player
@@ -150,7 +150,7 @@ function checkForWin() {
       let vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
       let diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
       let diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
-
+      //check for the _win condition in the pattern
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
         return true;
       }
